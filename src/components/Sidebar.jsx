@@ -12,30 +12,30 @@ export default function Sidebar({
 }) {
   const totalChapters = chapters.length;
   const completedCount = completedChapters.length;
-  const percentComplete = Math.round((completedCount / totalChapters) * 100);
+  const percentComplete = totalChapters > 0 ? Math.round((completedCount / totalChapters) * 100) : 0;
 
   return (
-    <div className="w-80 h-screen flex flex-col bg-[#0e1322] border-r border-slate-900 shrink-0 sticky top-0">
+    <div className="w-80 h-screen flex flex-col bg-[#fff7ed] border-r border-orange-100/80 shrink-0 sticky top-0">
       {/* Brand Header */}
-      <div className="p-6 pb-4 border-b border-slate-900/80">
+      <div className="p-6 pb-4 border-b border-orange-100/50">
         <div className="flex items-center gap-2.5 mb-2">
-          <div className="p-1.5 bg-indigo-600/10 rounded-xl text-indigo-400 border border-indigo-500/20">
+          <div className="p-1.5 bg-orange-500/10 rounded-xl text-orange-600 border border-orange-500/20">
             <GraduationCap className="w-6 h-6" />
           </div>
-          <span className="text-xl font-bold tracking-wide text-white">AI Creator OS</span>
+          <span className="text-xl font-bold tracking-wide text-slate-800">AI Creator OS</span>
         </div>
         <p className="text-xs text-slate-500 font-medium">The Ultimate FB Engagement Blueprint</p>
       </div>
 
       {/* Progress Hub */}
-      <div className="px-6 py-4 bg-slate-950/20 border-b border-slate-900/60">
+      <div className="px-6 py-4 bg-orange-100/20 border-b border-orange-100/40">
         <div className="flex items-center justify-between text-xs font-semibold mb-2">
-          <span className="text-slate-400">OVERALL PROGRESS</span>
-          <span className="text-indigo-400 font-mono">{percentComplete}% ({completedCount}/{totalChapters})</span>
+          <span className="text-slate-500">OVERALL PROGRESS</span>
+          <span className="text-orange-600 font-mono">{percentComplete}% ({completedCount}/{totalChapters})</span>
         </div>
-        <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden border border-slate-900">
+        <div className="w-full h-1.5 bg-slate-200/80 rounded-full overflow-hidden border border-slate-300/10">
           <div
-            className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full transition-all duration-500 ease-out"
+            className="h-full bg-gradient-to-r from-orange-400 to-amber-500 rounded-full transition-all duration-500 ease-out"
             style={{ width: `${percentComplete}%` }}
           />
         </div>
@@ -53,71 +53,27 @@ export default function Sidebar({
           const isCompleted = completedChapters.includes(chapter.id);
 
           return (
-            <div
+            <button
               key={chapter.id}
-              className={`group relative rounded-xl border transition-all duration-300 ${
+              onClick={() => setActive(chapter)}
+              className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 select-none cursor-pointer flex items-center justify-between gap-3 shadow-xs ${
                 isSelected
-                  ? "bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/15"
-                  : "bg-slate-900/40 text-slate-300 border-slate-800/80 hover:bg-slate-900/80 hover:border-slate-700/60"
+                  ? "bg-white text-orange-800 border-orange-300 shadow-sm shadow-orange-500/5 font-semibold"
+                  : "bg-white/45 text-slate-600 border-orange-100/40 hover:text-slate-900 hover:bg-white/85 hover:border-orange-200/50"
               }`}
             >
-              <div className="flex items-start justify-between p-4 gap-3">
-                {/* Chapter Metadata */}
-                <button
-                  onClick={() => setActive(chapter)}
-                  className="flex-1 text-left cursor-pointer"
-                >
-                  <span
-                    className={`text-[10px] font-bold tracking-wider uppercase font-mono ${
-                      isSelected ? "text-indigo-200" : "text-indigo-400/80 group-hover:text-indigo-400"
-                    }`}
-                  >
-                    Module {chapter.id}
-                  </span>
-                  
-                  <h4 className="font-bold text-sm leading-snug mt-0.5 tracking-wide text-slate-100 group-hover:text-white transition-colors">
-                    {chapter.title.replace(/^TYPE \d+\s*[—-]\s*/i, "")}
-                  </h4>
-                  
-                  <p
-                    className={`text-xs mt-1.5 line-clamp-2 leading-relaxed ${
-                      isSelected ? "text-indigo-100" : "text-slate-400"
-                    }`}
-                  >
-                    {chapter.description}
-                  </p>
-                </button>
-
-                {/* Progress Toggle Badge */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleChapterCompleted(chapter.id);
-                  }}
-                  className={`shrink-0 mt-1 cursor-pointer transition-colors ${
-                    isCompleted
-                      ? isSelected
-                        ? "text-white hover:text-indigo-200"
-                        : "text-emerald-500 hover:text-emerald-400"
-                      : isSelected
-                      ? "text-indigo-300 hover:text-white"
-                      : "text-slate-600 hover:text-slate-400"
-                  }`}
-                  title={isCompleted ? "Mark as Incomplete" : "Mark as Completed"}
-                >
-                  {isCompleted ? (
-                    <CheckCircle2 className="w-5 h-5 fill-current/10" />
-                  ) : (
-                    <Circle className="w-5 h-5" />
-                  )}
-                </button>
-              </div>
-            </div>
+              <span className="text-sm leading-snug tracking-wide line-clamp-2">
+                {chapter.title}
+              </span>
+              {isCompleted && (
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+              )}
+            </button>
           );
         })}
 
         {chapters.length === 0 && (
-          <div className="text-center py-8 text-slate-500">
+          <div className="text-center py-8 text-slate-400">
             <p className="text-sm">No modules found</p>
             <p className="text-xs mt-1">Try another search term</p>
           </div>

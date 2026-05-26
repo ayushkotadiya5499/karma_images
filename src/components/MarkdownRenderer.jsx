@@ -1,8 +1,8 @@
 import React from 'react';
 
 /**
- * A ultra-performant, highly styled custom Markdown renderer
- * tailormade for premium dark-theme dashboards.
+ * An ultra-performant, highly styled custom Markdown renderer
+ * tailormade for premium light-theme dashboards with perfect contrast.
  */
 export function MarkdownRenderer({ content }) {
   if (!content) return null;
@@ -11,14 +11,14 @@ export function MarkdownRenderer({ content }) {
   const blocks = content.split(/\n\s*\n/);
 
   return (
-    <div className="space-y-4 text-slate-300">
+    <div className="space-y-4 text-slate-600 font-medium">
       {blocks.map((block, idx) => {
         const trimmed = block.trim();
         if (!trimmed) return null;
 
         // 1. Horizontal Rule
         if (trimmed === '---' || trimmed === '***') {
-          return <hr key={idx} className="my-6 border-t border-slate-800/40" />;
+          return <hr key={idx} className="my-6 border-t border-orange-100/80" />;
         }
 
         // 2. Table Parsing
@@ -38,22 +38,22 @@ export function MarkdownRenderer({ content }) {
           const body = cleanRows.slice(1);
 
           return (
-            <div key={idx} className="my-5 overflow-x-auto rounded-xl border border-slate-800/30 bg-slate-950/20 backdrop-blur-sm">
+            <div key={idx} className="my-5 overflow-x-auto rounded-xl border border-orange-100 bg-orange-50/10 shadow-xs">
               <table className="w-full text-left border-collapse text-xs md:text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800/50 bg-indigo-950/10">
+                  <tr className="border-b border-orange-100 bg-orange-500/5">
                     {header && header.map((cell, cIdx) => (
-                      <th key={cIdx} className="px-4 py-3 font-semibold text-indigo-400">
+                      <th key={cIdx} className="px-4 py-3 font-bold text-orange-700">
                         {renderText(cell)}
                       </th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-900/30">
+                <tbody className="divide-y divide-orange-100/50">
                   {body.map((row, rIdx) => (
-                    <tr key={rIdx} className="hover:bg-slate-900/10 transition-colors">
+                    <tr key={rIdx} className="hover:bg-orange-500/5 transition-colors">
                       {row.map((cell, cIdx) => (
-                        <td key={cIdx} className="px-4 py-3 text-slate-300 font-normal">
+                        <td key={cIdx} className="px-4 py-3 text-slate-700 font-medium">
                           {renderText(cell)}
                         </td>
                       ))}
@@ -69,7 +69,7 @@ export function MarkdownRenderer({ content }) {
         if (trimmed.startsWith('>')) {
           const lines = trimmed.split('\n').map(l => l.replace(/^>\s?/, ''));
           return (
-            <blockquote key={idx} className="pl-4 my-4 border-l-4 border-indigo-500 bg-slate-950/30 py-2.5 rounded-r-lg text-slate-400 italic font-normal">
+            <blockquote key={idx} className="pl-4 my-4 border-l-4 border-orange-400 bg-orange-50/30 py-2.5 rounded-r-lg text-slate-600 italic font-medium">
               {lines.map((l, lIdx) => <p key={lIdx}>{renderText(l)}</p>)}
             </blockquote>
           );
@@ -81,8 +81,8 @@ export function MarkdownRenderer({ content }) {
           return (
             <ul key={idx} className="space-y-2.5 my-3 pl-1">
               {items.map((item, iIdx) => (
-                <li key={iIdx} className="flex items-start gap-2.5 text-sm md:text-base text-slate-300 leading-relaxed">
-                  <span className="mt-1.5 text-indigo-500 font-bold text-xs select-none">✦</span>
+                <li key={iIdx} className="flex items-start gap-2.5 text-sm md:text-base text-slate-600 leading-relaxed font-medium">
+                  <span className="mt-1.5 text-orange-500 font-bold text-xs select-none">✦</span>
                   <span>{renderText(item)}</span>
                 </li>
               ))}
@@ -94,7 +94,7 @@ export function MarkdownRenderer({ content }) {
         if (/^\d+\.\s/.test(trimmed)) {
           const items = trimmed.split('\n').map(l => l.replace(/^\d+\.\s?/, ''));
           return (
-            <ol key={idx} className="space-y-2.5 my-3 pl-5 list-decimal text-sm md:text-base text-slate-300 leading-relaxed font-normal">
+            <ol key={idx} className="space-y-2.5 my-3 pl-5 list-decimal text-sm md:text-base text-slate-600 leading-relaxed font-medium">
               {items.map((item, iIdx) => (
                 <li key={iIdx} className="pl-1">
                   <span>{renderText(item)}</span>
@@ -108,7 +108,7 @@ export function MarkdownRenderer({ content }) {
         if (trimmed.startsWith('```')) {
           const cleanText = trimmed.replace(/^```[a-zA-Z]*\n?/, '').replace(/\n?```$/, '');
           return (
-            <pre key={idx} className="my-4 p-4 rounded-xl font-mono text-xs overflow-x-auto bg-slate-950/80 border border-slate-800/40 text-emerald-400">
+            <pre key={idx} className="my-4 p-4 rounded-xl font-mono text-xs overflow-x-auto bg-slate-50 border border-orange-100/60 text-[#c2410c] font-semibold shadow-inner">
               <code>{cleanText}</code>
             </pre>
           );
@@ -119,16 +119,16 @@ export function MarkdownRenderer({ content }) {
           const level = (trimmed.match(/^#+/) || ['#'])[0].length;
           const text = trimmed.replace(/^#+\s?/, '');
           const classes = level === 1 
-            ? "text-xl md:text-2xl font-bold text-white mt-6 mb-3 border-b border-slate-800/30 pb-2" 
+            ? "text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-3 border-b border-orange-100 pb-2" 
             : level === 2 
-            ? "text-lg md:text-xl font-semibold text-slate-100 mt-5 mb-2.5" 
-            : "text-base md:text-lg font-medium text-slate-200 mt-4 mb-2";
+            ? "text-lg md:text-xl font-semibold text-slate-700 mt-5 mb-2.5" 
+            : "text-base md:text-lg font-medium text-slate-600 mt-4 mb-2";
           return React.createElement(`h${Math.min(level, 6)}`, { key: idx, className: classes }, renderText(text));
         }
 
         // Default Paragraph
         return (
-          <p key={idx} className="text-sm md:text-base text-slate-300 leading-relaxed font-normal my-2">
+          <p key={idx} className="text-sm md:text-base text-slate-600 leading-relaxed font-medium my-2">
             {renderText(trimmed)}
           </p>
         );
@@ -160,20 +160,20 @@ function renderText(text) {
     if ((matchText.startsWith('**') && matchText.endsWith('**')) || 
         (matchText.startsWith('__') && matchText.endsWith('__'))) {
       parts.push(
-        <strong key={matchIndex} className="font-semibold text-indigo-300">
+        <strong key={matchIndex} className="font-bold text-orange-700">
           {matchText.slice(2, -2)}
         </strong>
       );
     } else if ((matchText.startsWith('*') && matchText.endsWith('*')) || 
                (matchText.startsWith('_') && matchText.endsWith('_'))) {
       parts.push(
-        <em key={matchIndex} className="italic text-slate-200">
+        <em key={matchIndex} className="italic text-slate-700 font-semibold">
           {matchText.slice(1, -1)}
         </em>
       );
     } else if (matchText.startsWith('`') && matchText.endsWith('`')) {
       parts.push(
-        <code key={matchIndex} className="px-1.5 py-0.5 rounded text-xs font-mono bg-indigo-950/40 text-indigo-400 border border-indigo-500/10">
+        <code key={matchIndex} className="px-1.5 py-0.5 rounded text-xs font-mono bg-orange-50 text-[#c2410c] border border-orange-200/50">
           {matchText.slice(1, -1)}
         </code>
       );

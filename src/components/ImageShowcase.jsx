@@ -35,25 +35,25 @@ export function ImageShowcase({ image, carousel }) {
     setImgErrors(prev => ({ ...prev, [index]: true }));
   };
 
-  // Premium neon gradient placeholders for missing/dead image links
+  // Premium warm/amber gradients for missing/dead links
   const getGradientPlaceholder = (seed) => {
     const gradients = [
-      'from-violet-600 via-indigo-700 to-cyan-500',
-      'from-rose-500 via-fuchsia-600 to-indigo-500',
-      'from-emerald-500 via-teal-600 to-cyan-500',
-      'from-amber-500 via-orange-600 to-rose-500',
-      'from-blue-600 via-purple-600 to-pink-500'
+      'from-amber-500 via-orange-500 to-rose-400',
+      'from-orange-400 via-amber-500 to-yellow-400',
+      'from-rose-400 via-peach-500 to-orange-400',
+      'from-amber-400 via-peach-400 to-yellow-500',
+      'from-orange-500 via-rose-500 to-amber-400'
     ];
     const idx = Math.abs(seed) % gradients.length;
     return `bg-gradient-to-tr ${gradients[idx]}`;
   };
 
   return (
-    <div className="relative group/showcase my-5 overflow-hidden rounded-2xl border border-slate-800/40 bg-slate-950/20 backdrop-blur-md">
+    <div className="relative group/showcase my-5 overflow-hidden rounded-2xl border border-orange-100 bg-white shadow-xs">
       {/* Visual Title / Meta Header */}
-      <div className="flex items-center justify-between px-4.5 py-3 border-b border-slate-900/40 bg-slate-900/20">
-        <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-400 uppercase">
-          <ImageIcon className="w-3.5 h-3.5 text-indigo-400" />
+      <div className="flex items-center justify-between px-4.5 py-3 border-b border-orange-100/60 bg-orange-50/20">
+        <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-slate-500 uppercase">
+          <ImageIcon className="w-3.5 h-3.5 text-orange-600" />
           <span>{isCarousel ? `Visual Gallery (${currentIndex + 1}/${imagesList.length})` : 'Visual Guide'}</span>
         </div>
         
@@ -62,7 +62,7 @@ export function ImageShowcase({ image, carousel }) {
             href={currentImage.original_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300 transition-colors font-medium"
+            className="flex items-center gap-1 text-xs text-orange-600 hover:text-orange-500 transition-colors font-medium cursor-pointer"
           >
             <span>HD Source</span>
             <ExternalLink className="w-3 h-3" />
@@ -71,7 +71,7 @@ export function ImageShowcase({ image, carousel }) {
       </div>
 
       {/* Main Image Frame */}
-      <div className="relative aspect-video w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+      <div className="relative aspect-video w-full overflow-hidden bg-slate-900 flex items-center justify-center">
         <AnimatePresence mode="wait">
           {imgErrors[currentIndex] ? (
             <motion.div
@@ -81,11 +81,11 @@ export function ImageShowcase({ image, carousel }) {
               exit={{ opacity: 0 }}
               className={`w-full h-full flex flex-col items-center justify-center p-6 text-center ${getGradientPlaceholder(currentIndex)}`}
             >
-              <div className="absolute inset-0 bg-black/40 backdrop-blur-xs" />
+              <div className="absolute inset-0 bg-black/30 backdrop-blur-xs" />
               <div className="relative z-10 space-y-2">
                 <ImageIcon className="w-10 h-10 text-white/80 mx-auto animate-pulse" />
-                <p className="text-white font-semibold text-sm">DALL-E Concept Reference</p>
-                <p className="text-white/60 text-xs font-mono max-w-md mx-auto line-clamp-2 px-4">
+                <p className="text-white font-bold text-sm">DALL-E Concept Reference</p>
+                <p className="text-white/80 text-xs font-mono max-w-md mx-auto line-clamp-2 px-4 italic">
                   "{currentImage.query}"
                 </p>
               </div>
@@ -100,29 +100,29 @@ export function ImageShowcase({ image, carousel }) {
               exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
               onError={() => handleImageError(currentIndex)}
-              className="w-full h-full object-cover select-none transition-transform duration-700 hover:scale-105"
+              className="w-full h-full object-cover select-none transition-transform duration-700 hover:scale-103"
             />
           )}
         </AnimatePresence>
 
-        {/* Ambient Dark Overlay */}
-        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
+        {/* Ambient Overlay */}
+        <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
 
         {/* Copy Prompt Float Button */}
         {currentImage.query && (
           <button
             onClick={(e) => handleCopyPrompt(e, currentImage.query)}
-            className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900/85 hover:bg-indigo-600 text-slate-200 border border-slate-700/50 backdrop-blur-md transition-all shadow-lg active:scale-95"
+            className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/95 hover:bg-orange-500 text-slate-700 hover:text-white border border-slate-200/80 backdrop-blur-md transition-all shadow-md active:scale-95 cursor-pointer"
             title="Copy image generation query"
           >
             {copied ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-emerald-400">Copied</span>
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <span className="text-emerald-600 font-bold">Copied</span>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5 text-indigo-400 group-hover/showcase:text-white" />
+                <Copy className="w-3.5 h-3.5 text-orange-500 group-hover/showcase:text-white" />
                 <span>Copy Query</span>
               </>
             )}
@@ -134,13 +134,13 @@ export function ImageShowcase({ image, carousel }) {
           <>
             <button
               onClick={handlePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white border border-slate-800/40 backdrop-blur-xs transition-all shadow-md hover:scale-110 active:scale-95"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 hover:text-orange-600 border border-slate-200 backdrop-blur-xs transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white border border-slate-800/40 backdrop-blur-xs transition-all shadow-md hover:scale-110 active:scale-95"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-9 h-9 rounded-full bg-white/90 hover:bg-white text-slate-700 hover:text-orange-600 border border-slate-200 backdrop-blur-xs transition-all shadow-md hover:scale-105 active:scale-95 cursor-pointer"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -150,17 +150,17 @@ export function ImageShowcase({ image, carousel }) {
 
       {/* Description Overlay */}
       {currentImage.query && (
-        <div className="p-4 bg-slate-950/80 border-t border-slate-900/50">
-          <p className="text-xs font-semibold text-indigo-400 uppercase tracking-wide mb-1.5">
+        <div className="p-4 bg-slate-50 border-t border-orange-100/50">
+          <p className="text-xs font-bold text-orange-600 uppercase tracking-wide mb-1.5 font-mono">
             DALL-E Search Query / Prompt:
           </p>
           <div className="flex items-start justify-between gap-3">
-            <p className="text-xs md:text-sm font-mono text-slate-300 bg-slate-900/40 p-2.5 rounded-lg border border-slate-800/40 flex-1 leading-relaxed">
+            <p className="text-xs md:text-sm font-mono text-slate-700 bg-white p-2.5 rounded-lg border border-slate-100 flex-1 leading-relaxed shadow-xs">
               {currentImage.query}
             </p>
           </div>
           {currentImage.title && (
-            <p className="text-[11px] text-slate-500 mt-2 italic font-normal">
+            <p className="text-[11px] text-slate-400 mt-2 italic font-medium">
               Reference Subject: {currentImage.title}
             </p>
           )}
@@ -169,15 +169,15 @@ export function ImageShowcase({ image, carousel }) {
 
       {/* Carousel Dots Indicators */}
       {isCarousel && (
-        <div className="flex justify-center gap-1.5 py-2.5 bg-slate-950 border-t border-slate-900/30">
+        <div className="flex justify-center gap-1.5 py-2.5 bg-slate-50 border-t border-orange-100/40">
           {imagesList.map((_, idx) => (
             <button
               key={idx}
               onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
                 idx === currentIndex 
-                  ? 'bg-indigo-500 w-4' 
-                  : 'bg-slate-700 hover:bg-slate-500'
+                  ? 'bg-orange-500 w-4' 
+                  : 'bg-slate-300 hover:bg-slate-400'
               }`}
             />
           ))}
