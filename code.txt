@@ -1,0 +1,526 @@
+3. tailwind.config.js
+
+Replace:
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+4. src/index.css
+
+Replace everything:
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #0f172a;
+  color: white;
+  font-family: sans-serif;
+}
+5. src/data/chapters.js
+export const chapters = [
+  {
+    id: 1,
+    title: "TYPE 1 — REALISTIC IMAGES",
+    description: "Emotional cinematic realism for Facebook storytelling",
+    sections: [
+      {
+        heading: "Best for",
+        content: [
+          "Motivation",
+          "Family stories",
+          "Emotional reels",
+          "Spiritual storytelling",
+        ],
+      },
+
+      {
+        heading: "What is a Realistic AI Image?",
+        content:
+          "Realistic AI images look like DSLR photography with cinematic emotion and believable human expressions.",
+      },
+
+      {
+        heading: "Why Realistic Images Work on Facebook",
+        content:
+          "Facebook audiences emotionally connect with realistic visuals because they feel relatable and human.",
+      },
+
+      {
+        heading: "Core Formula for Realistic AI Prompt",
+        prompt: `
+[Subject]
++
+[Emotion]
++
+[Lighting]
++
+[Environment]
++
+[Cinematic Mood]
+        `,
+      },
+
+      {
+        heading: "Professional Prompt Structure",
+        prompt: `
+[character]
+doing [action]
+at [location]
+emotion: [emotion]
+lighting: [lighting]
+camera: [camera angle]
+style: realistic cinematic photography
+quality: ultra detailed
+        `,
+      },
+
+      {
+        heading: "1. Child Content (Age 5–10)",
+        bestFor: [
+          "Education",
+          "Emotional child reels",
+          "Parent audience",
+        ],
+        prompt: `
+A 7 year old Indian boy studying under warm lamp light, emotional eyes, cinematic realism, DSLR photography
+        `,
+        bestContent: [
+          "Study motivation",
+          "Family emotion",
+          "Child dreams",
+        ],
+      },
+
+      {
+        heading: "Golden Rule of Facebook AI Images",
+        content:
+          "Professional creators focus on emotion, storytelling, simplicity, and relatable visuals instead of over-detailed fake AI images.",
+      },
+
+      {
+        heading: "Image + Sarvam AI Voice Strategy",
+        content:
+          "Sad visuals work best with slow emotional narration while motivation visuals work with deep energetic voice.",
+      },
+
+      {
+        heading: "Can This Become a Big Facebook Page?",
+        content:
+          "Yes — but only with consistency, emotional storytelling, strong hooks, and audience retention.",
+      },
+
+      {
+        heading: "Your First Practice Task",
+        content: [
+          "Generate child study scene",
+          "Generate emotional student",
+          "Generate old emotional man",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 2,
+    title: "TYPE 2 — PIXAR STYLE",
+    description: "3D emotional storytelling style",
+    sections: [
+      {
+        heading: "Best for",
+        content: [
+          "Kids content",
+          "Family storytelling",
+          "Moral stories",
+        ],
+      },
+
+      {
+        heading: "Pixar Prompt Formula",
+        prompt: `
+[Character]
++
+[Emotion]
++
+[3D Pixar Style]
++
+[Cinematic Lighting]
+        `,
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    title: "TYPE 3 — ANIME STYLE",
+    description: "Youth emotional anime storytelling",
+    sections: [
+      {
+        heading: "Best for",
+        content: [
+          "Youth audience",
+          "Anime storytelling",
+          "Deep emotional edits",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 4,
+    title: "TYPE 4 — CINEMATIC STYLE",
+    description: "Movie-style emotional visuals",
+    sections: [
+      {
+        heading: "Best for",
+        content: [
+          "Movie storytelling",
+          "Motivational reels",
+          "Emotional retention",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 5,
+    title: "TYPE 5 — DARK MOODY STYLE",
+    description: "Loneliness and emotional depth",
+    sections: [
+      {
+        heading: "Best for",
+        content: [
+          "Sad stories",
+          "Loneliness",
+          "Deep emotional reels",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 6,
+    title: "TYPE 6 — SPIRITUAL INDIAN STYLE",
+    description: "Peaceful spiritual storytelling",
+    sections: [
+      {
+        heading: "Best for",
+        content: [
+          "Krishna wisdom",
+          "Temple reels",
+          "Peaceful motivation",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 7,
+    title: "TYPE 7 — HYPER-REALISTIC AD STYLE",
+    description: "Luxury product advertisement visuals",
+    sections: [
+      {
+        heading: "Best for",
+        content: [
+          "Product ads",
+          "Luxury branding",
+          "Business pages",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 8,
+    title: "TYPE 8 — THUMBNAIL PSYCHOLOGY",
+    description: "Stop-scroll Facebook thumbnail system",
+    sections: [
+      {
+        heading: "Most Important Rule",
+        content:
+          "Emotion + Curiosity + Clear Focus creates stop-scroll thumbnails.",
+      },
+    ],
+  },
+
+  {
+    id: 9,
+    title: "TYPE 9 — ADVANCED PROMPT ENGINEERING",
+    description: "Professional AI prompt control",
+    sections: [
+      {
+        heading: "Golden Formula",
+        prompt: `
+[Subject]
++
+[Emotion]
++
+[Lighting]
++
+[Camera]
++
+[Mood]
+        `,
+      },
+    ],
+  },
+
+  {
+    id: 10,
+    title: "TYPE 10 — CHARACTER CONSISTENCY",
+    description: "Build recognizable AI characters",
+    sections: [
+      {
+        heading: "Core Idea",
+        content:
+          "Use the same character repeatedly to build emotional audience connection.",
+      },
+    ],
+  },
+
+  {
+    id: 11,
+    title: "TYPE 11 — IMAGE TO VIDEO",
+    description: "Transform images into cinematic reels",
+    sections: [
+      {
+        heading: "Workflow",
+        content: [
+          "Hook",
+          "Images",
+          "Motion",
+          "Voice",
+          "Music",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 12,
+    title: "TYPE 12 — VIRAL REEL STRUCTURE",
+    description: "Facebook retention system",
+    sections: [
+      {
+        heading: "Master Structure",
+        content:
+          "Hook → Emotion → Curiosity → Story → Payoff",
+      },
+    ],
+  },
+
+  {
+    id: 13,
+    title: "TYPE 13 — STORYTELLING FRAMEWORK",
+    description: "Emotional storytelling psychology",
+    sections: [
+      {
+        heading: "Story Formula",
+        content:
+          "Pain → Struggle → Hope → Transformation",
+      },
+    ],
+  },
+
+  {
+    id: 14,
+    title: "TYPE 14 — SARVAM AI VOICE",
+    description: "Emotional AI narration mastery",
+    sections: [
+      {
+        heading: "Voice Rules",
+        content: [
+          "Slow pacing",
+          "Human pauses",
+          "Emotional tone",
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 15,
+    title: "TYPE 15 — MONETIZATION STRATEGY",
+    description: "Copyright-safe Facebook growth",
+    sections: [
+      {
+        heading: "Safe Formula",
+        content:
+          "Original visuals + narration + safe music + storytelling",
+      },
+    ],
+  },
+];
+6. src/components/Sidebar.jsx
+export default function Sidebar({ chapters, active, setActive }) {
+  return (
+    <div className="w-80 h-screen overflow-y-auto bg-slate-900 border-r border-slate-800 p-4">
+      <h1 className="text-2xl font-bold mb-6">
+        AI Creator OS
+      </h1>
+
+      <div className="space-y-3">
+        {chapters.map((chapter) => (
+          <button
+            key={chapter.id}
+            onClick={() => setActive(chapter)}
+            className={`w-full text-left p-4 rounded-xl transition-all ${
+              active.id === chapter.id
+                ? "bg-blue-600"
+                : "bg-slate-800 hover:bg-slate-700"
+            }`}
+          >
+            <h2 className="font-semibold">
+              {chapter.id}. {chapter.title}
+            </h2>
+
+            <p className="text-sm text-slate-300 mt-1">
+              {chapter.description}
+            </p>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+7. src/components/PromptBlock.jsx
+export default function PromptBlock({ prompt }) {
+  const copyPrompt = () => {
+    navigator.clipboard.writeText(prompt);
+  };
+
+  return (
+    <div className="bg-black rounded-xl p-4 relative mt-3">
+      <button
+        onClick={copyPrompt}
+        className="absolute top-3 right-3 bg-blue-600 px-3 py-1 rounded-lg text-sm"
+      >
+        Copy
+      </button>
+
+      <pre className="whitespace-pre-wrap text-green-400">
+        {prompt}
+      </pre>
+    </div>
+  );
+}
+8. src/components/SectionCard.jsx
+import PromptBlock from "./PromptBlock";
+
+export default function SectionCard({ section }) {
+  return (
+    <div className="bg-slate-900 p-6 rounded-2xl mb-6 border border-slate-800">
+      <h2 className="text-2xl font-bold mb-4">
+        {section.heading}
+      </h2>
+
+      {section.content &&
+        (Array.isArray(section.content) ? (
+          <ul className="list-disc ml-5 space-y-2 text-slate-300">
+            {section.content.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-slate-300 leading-8">
+            {section.content}
+          </p>
+        ))}
+
+      {section.prompt && (
+        <PromptBlock prompt={section.prompt} />
+      )}
+
+      {section.bestFor && (
+        <div className="mt-5">
+          <h3 className="font-semibold mb-2">
+            Best For:
+          </h3>
+
+          <ul className="list-disc ml-5 text-slate-300">
+            {section.bestFor.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {section.bestContent && (
+        <div className="mt-5">
+          <h3 className="font-semibold mb-2">
+            Best Content:
+          </h3>
+
+          <ul className="list-disc ml-5 text-slate-300">
+            {section.bestContent.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+9. src/components/ChapterContent.jsx
+import SectionCard from "./SectionCard";
+
+export default function ChapterContent({ chapter }) {
+  return (
+    <div className="flex-1 overflow-y-auto h-screen p-10">
+      <div className="mb-10">
+        <h1 className="text-5xl font-bold mb-4">
+          {chapter.title}
+        </h1>
+
+        <p className="text-xl text-slate-400">
+          {chapter.description}
+        </p>
+      </div>
+
+      {chapter.sections.map((section, index) => (
+        <SectionCard
+          key={index}
+          section={section}
+        />
+      ))}
+    </div>
+  );
+}
+10. src/pages/Dashboard.jsx
+import { useState } from "react";
+import Sidebar from "../components/Sidebar";
+import ChapterContent from "../components/ChapterContent";
+import { chapters } from "../data/chapters";
+
+export default function Dashboard() {
+  const [active, setActive] = useState(chapters[0]);
+
+  return (
+    <div className="flex">
+      <Sidebar
+        chapters={chapters}
+        active={active}
+        setActive={setActive}
+      />
+
+      <ChapterContent chapter={active} />
+    </div>
+  );
+}
+11. src/App.jsx
+import Dashboard from "./pages/Dashboard";
+
+export default function App() {
+  return <Dashboard />;
+}
+12. RUN PROJECT
+npm run dev
