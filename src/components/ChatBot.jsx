@@ -331,7 +331,7 @@ export default function ChatBot() {
                   <span className="text-sm">🤖</span>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">Karma AI Advisor</p>
+                  <p className="text-sm font-semibold text-white">KARMA AI</p>
                   <p className="text-[10px] text-violet-300">Image · Prompt · Voice · Facebook</p>
                 </div>
               </div>

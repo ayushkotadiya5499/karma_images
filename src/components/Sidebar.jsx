@@ -22,7 +22,7 @@ export default function Sidebar({
           <div className="p-1.5 bg-orange-500/10 rounded-xl text-orange-600 border border-orange-500/20">
             <GraduationCap className="w-6 h-6" />
           </div>
-          <span className="text-xl font-bold tracking-wide text-slate-800">AI Creator OS</span>
+          <span className="text-xl font-bold tracking-wide text-slate-800">KARMA IMAGE</span>
         </div>
         <p className="text-xs text-slate-500 font-medium">The Ultimate FB Engagement Blueprint</p>
       </div>
